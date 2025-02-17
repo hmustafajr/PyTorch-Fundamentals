@@ -42,3 +42,19 @@ class NeuralNetwork(nn.Module):
 # Here we create an instance of NeuralNetwork, and move it to the device, and print its structure.
 model = NeuralNetwork().to(device)
 print (model)
+
+
+# To use the model, we pass it inout data. this executes the model's forward, along with some background operations
+# Note: Don't call model.forward() directly.
+
+# Calling the model on the inout returns a 2-dimensional tensor with dim = 0 corresponding to each output of 10 raw
+# predicted values for each class, and dim = 1 corresponding to the individual values of each output. We get the
+# prediction probabilities by passing it through an instance of the nn.Softmax module.
+
+X = torch.rand(1, 28, 28, device + device)
+logits = model(x)
+pred_probab = nn.Softmax(dim = 1)(logits)
+y_pred = pred_probab.argmax(1)
+print(f"Predicted class: {y_pred}")
+
+# Model Layers
