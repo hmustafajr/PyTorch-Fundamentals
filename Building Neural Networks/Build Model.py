@@ -58,3 +58,63 @@ y_pred = pred_probab.argmax(1)
 print(f"Predicted class: {y_pred}")
 
 # Model Layers
+# We'll break down the layers in the FashionMNIST model for illustration. We'll take a sample minibatch of a few images sized
+# 28 x 28 and see what happens when we pass it through the network.
+
+input_image = torch.rand(2, 28, 28)
+print(input_image.size())
+
+#Out
+# torch.size([3, 28, 28])
+
+# Flatten
+# We initialize the nn.Flatten layer to convert each 2 dimensional image into a contiguous array of 784 pixel values
+# the minibatch dimension (at dim=0) is maintained.
+
+flatten = nn.Flatten()
+flat_image = flatten(inout_image)
+print(flat_image.size())
+
+# Out
+# torch.Size([3, 784])
+
+# Linear
+# The linear layer is a module that applies a linear transformation on the input using its stored weights and biases.
+
+layer1 = nn.Linear(in_features = 28* 28, out_features=20)
+hidden1 = layer1(flat_image)
+print(hidden1.size())
+
+# Out
+# torch.size([3, 20])
+
+# ReLU
+# Non-linear activations are what create the complex mapping between the model's inputs and outputs. They are applied
+# after linear transformations to introduce nonlinearity, helping nueral networks learn a wide variety of phenomena.
+# We'll use the nn.ReLU between our linear layers, but there are other activations to introduce non-linearity.
+
+print(f"Before ReLU: {hidden1}\n\n")
+hidden1 = nn.ReLU()(hidden1)
+print(f"After ReLU: {hidden1}")
+
+# Out
+# Before ReLU: tensor([[ 0.4158, -0.0130, -0.1144,  0.3960,  0.1476, -0.0690, -0.0269,  0.2690,
+#         0.1353,  0.1975,  0.4484,  0.0753,  0.4455,  0.5321, -0.1692,  0.4504,
+#         0.2476, -0.1787, -0.2754,  0.2462],
+#         [ 0.2326,  0.0623, -0.2984,  0.2878,  0.2767, -0.5434, -0.5051,  0.4339,
+#         0.0302,  0.1634,  0.5649, -0.0055,  0.2025,  0.4473, -0.2333,  0.6611,
+#         0.1883, -0.1250,  0.0820,  0.2778],
+#         [ 0.3325,  0.2654,  0.1091,  0.0651,  0.3425, -0.3880, -0.0152,  0.2298,
+#         0.3872,  0.0342,  0.8503,  0.0937,  0.1796,  0.5007, -0.1897,  0.4030,
+#         0.1189, -0.3237,  0.2048,  0.4343]], grad_fn=<AddmmBackward0>)
+
+# After ReLU: tensor([[0.4158, 0.0000, 0.0000, 0.3960, 0.1476, 0.0000, 0.0000, 0.2690, 0.1353,
+#         0.1975, 0.4484, 0.0753, 0.4455, 0.5321, 0.0000, 0.4504, 0.2476, 0.0000,
+#         0.0000, 0.2462],
+#         [0.2326, 0.0623, 0.0000, 0.2878, 0.2767, 0.0000, 0.0000, 0.4339, 0.0302,
+#         0.1634, 0.5649, 0.0000, 0.2025, 0.4473, 0.0000, 0.6611, 0.1883, 0.0000,
+#         0.0820, 0.2778],
+#         [0.3325, 0.2654, 0.1091, 0.0651, 0.3425, 0.0000, 0.0000, 0.2298, 0.3872,
+#         0.0342, 0.8503, 0.0937, 0.1796, 0.5007, 0.0000, 0.4030, 0.1189, 0.0000,
+#         0.2048, 0.4343]], grad_fn=<ReluBackward0>)
+
