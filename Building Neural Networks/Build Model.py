@@ -118,3 +118,23 @@ print(f"After ReLU: {hidden1}")
 #         0.0342, 0.8503, 0.0937, 0.1796, 0.5007, 0.0000, 0.4030, 0.1189, 0.0000,
 #         0.2048, 0.4343]], grad_fn=<ReluBackward0>)
 
+# Sequential
+# nn.Sequential is an ordered container of modules. The data is passed through all the modules in the same order as defined.
+# You can use sequential containers to put together a quick-network like seq_modules.
+
+seq_modules = nn.Sequesntial(
+  flatten,
+  layer1,
+  nnReLU(),
+  nn.Linear(20, 10)
+)
+input_image = torch.rand(3, 28, 28)
+logits = seq_modules(input_image)
+
+# Softmax
+# The last linear layer of the neural network returns logits-raw values in [-infinity, infinity] - which are passed to
+# the nn.Softmax module. The logits are scaled to values [0, 1] representing the model's predicted probabilities for
+# each class. dim parameter indicates the dimension along which the values must sum to 1
+
+softmax = nn.Softmac(dim = 1)
+pred_softmax = softmax(logits)
