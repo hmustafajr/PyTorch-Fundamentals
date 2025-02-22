@@ -138,3 +138,37 @@ logits = seq_modules(input_image)
 
 softmax = nn.Softmac(dim = 1)
 pred_softmax = softmax(logits)
+
+# Model Parameters
+# Many layers inside a neural network are parameterized - meaning they have associaed weights and biases that are
+# optimized during training. Subclassing nn.Modules automatically tracks all fields defined inside your model object
+# and makes all parameters accessible using your model's parameters() or named_parameters() methods.
+
+# In the example below, we'll iterate over each parameter and print its size and preview of it's values
+
+print(f"Model Structure: {Model}\n\n")
+for name, param in model.named_parameters():
+  print(f"layer {name} | Size: {param.size()} | Values : {param[:2]} \n")
+
+# Model structure: NeuralNetwork(
+#   (flatten): Flatten(start_dim=1, end_dim=-1)
+#   (linear_relu_stack): Sequential(
+#   (0): Linear(in_features=784, out_features=512, bias=True)
+#   (1): ReLU()
+#   (2): Linear(in_features=512, out_features=512, bias=True)
+#   (3): ReLU()
+#   (4): Linear(in_features=512, out_features=10, bias=True)
+#    )
+#   )
+#   Layer: linear_relu_stack.0.weight | Size: torch.Size([512, 784]) | Values : tensor([[ 0.0273,  0.0296, -0.0084,  ..., -0.0142,  0.0093,  0.0135],
+#       [-0.0188, -0.0354,  0.0187,  ..., -0.0106, -0.0001,  0.0115]],
+#       device='cuda:0', grad_fn=<SliceBackward0>)
+#   Layer: linear_relu_stack.0.bias | Size: torch.Size([512]) | Values : tensor([-0.0155, -0.0327], device='cuda:0', grad_fn=<SliceBackward0>)
+#   Layer: linear_relu_stack.2.weight | Size: torch.Size([512, 512]) | Values : tensor([[ 0.0116,  0.0293, -0.0280,  ...,  0.0334, -0.0078,  0.0298],
+#       [ 0.0095,  0.0038,  0.0009,  ..., -0.0365, -0.0011, -0.0221]],
+#      device='cuda:0', grad_fn=<SliceBackward0>)
+#   Layer: linear_relu_stack.2.bias | Size: torch.Size([512]) | Values : tensor([ 0.0148, -0.0256], device='cuda:0', grad_fn=<SliceBackward0>)
+#   Layer: linear_relu_stack.4.weight | Size: torch.Size([10, 512]) | Values : tensor([[-0.0147, -0.0229,  0.0180,  ..., -0.0013,  0.0177,  0.0070],
+#       [-0.0202, -0.0417, -0.0279,  ..., -0.0441,  0.0185, -0.0268]],
+#      device='cuda:0', grad_fn=<SliceBackward0>)
+#   Layer: linear_relu_stack.4.bias | Size: torch.Size([10]) | Values : tensor([ 0.0070, -0.0411], device='cuda:0', grad_fn=<SliceBackward0>)
