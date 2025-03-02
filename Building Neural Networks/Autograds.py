@@ -56,3 +56,28 @@ print(b.grad)
 # ::Note:: we can only perform gradient calculations using backward once on a given graph, for performance reasons. if we
 # need to do several backward calls on the same graphh, we need to pass retain_graph = True to the backward call.
 
+# Disabling Gradient Tracking
+# By default, all tensors with requires_grad = True are tracking their computational history and support gradietn computation.
+# However, there are sone cases when we do not need to do that, for example, when we have trained the model and just want to
+# apply it to some input data, i.e we only want to forward computations through the network. We can stop tracking computations
+# by surrounding our compputation code with torch.ne_grad().
+
+z = torch.matmul(x, w)+b
+print(z.requires_grad)
+
+with torch.no_grad():
+  z = torch.matmul(x, w)+b
+print(z.requires_grad)
+
+# Out
+# True
+# False
+
+# Another way to achieve the same result is to use the detach() method.
+
+z = torch.matmul(x, w)+b
+z_det = z.detach()
+print(z_det.requires_grad)
+
+# Out
+# False
