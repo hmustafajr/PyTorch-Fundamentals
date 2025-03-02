@@ -81,3 +81,8 @@ print(z_det.requires_grad)
 
 # Out
 # False
+
+# There are reasons why you would want to disable gradient tracking
+# To mark some parameters in your neural network as frozen parameters
+# To speed up somputations when you are only doing forward pass, because computations on tensors that do not track
+# gradients have better efficiency
