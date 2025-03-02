@@ -79,3 +79,11 @@ learning_rate = 1e-3
 batch_size = 64
 epochs = 5
 
+# Optimization Loop
+# Once we set our hyperparameters, we can then train and optimize our model with an optimization loop. Each iteration
+# of the optimization loop is called an epoch.
+# Each epoch consists of two main parts:
+# - The Train Loop - iterate over the traininf dataset and try to converge to optimal parameters.
+# - The Validation / Test Loop - iterate over the test dataset to check if model performance is improving.
+
+# We'll briefly familiarize ourselves with some of the concepts used in the training loop.
