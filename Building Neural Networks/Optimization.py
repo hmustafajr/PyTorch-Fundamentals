@@ -51,10 +51,10 @@ model = NeuralNetwork()
 # 71%|#######1  | 18.9M/26.4M [00:01<00:00, 24.2MB/s]
 # 91%|#########1| 24.1M/26.4M [00:01<00:00, 30.7MB/s]
 # 100%|##########| 26.4M/26.4M [00:01<00:00, 19.3MB/s]
-
+#
 #  0%|          | 0.00/29.5k [00:00<?, ?B/s]
 # 100%|##########| 29.5k/29.5k [00:00<00:00, 324kB/s]
-
+#
 #  0%|          | 0.00/4.42M [00:00<?, ?B/s]
 #  1%|1         | 65.5k/4.42M [00:00<00:12, 361kB/s]
 #  4%|4         | 197k/4.42M [00:00<00:05, 767kB/s]
@@ -62,7 +62,7 @@ model = NeuralNetwork()
 # 36%|###6      | 1.61M/4.42M [00:00<00:00, 4.26MB/s]
 # 79%|#######8  | 3.47M/4.42M [00:00<00:00, 7.09MB/s]
 # 100%|##########| 4.42M/4.42M [00:00<00:00, 6.05MB/s]
-
+#
 #  0%|          | 0.00/5.15k [00:00<?, ?B/s]
 # 100%|##########| 5.15k/5.15k [00:00<00:00, 40.5MB/s]
 
@@ -87,3 +87,21 @@ epochs = 5
 # - The Validation / Test Loop - iterate over the test dataset to check if model performance is improving.
 
 # We'll briefly familiarize ourselves with some of the concepts used in the training loop.
+
+# Loss Function
+# When presented with some training data, our untrained network is likely not to give the correct answer. Loss Function
+# measures the degree of dissimilarity of obtained result to the target value, and it is the loss function that we want
+# to minimize during training. To calculate the loss we make a prediction using the inputs of our given data sample and 
+# compare it against the true data label value.
+#
+# Common loss dunctions include nn.MSELoss (Mean Square Error) for regression tasks, and nnNLLLoss (Negative Log Likelihood(
+# for classification. nnCrossEntropyLoss combines nn.LogSoftmax and nn.NLLLoss.
+#
+# We pass our model's output logits to nn.CrossEntropyLoss, which will normalize the logits and compute the prediction error.
+
+# Inititalize the loss function
+loss_fn = nn.CrossEntropyLoss()
+
+# Optimizer
+#
+#
