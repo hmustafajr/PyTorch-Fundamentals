@@ -105,4 +105,20 @@ loss_fn = nn.CrossEntropyLoss()
 # Optimizer
 #
 # Optimization is the process of adjusting model parameters to reduce model error in each training step.
-# **optimization algorithms**
+# Optimization algorithms define how this process is performed (in this example we use Stochastic Gradient Descent).
+# All optimization logic is encapsulated in the optimizer object. Here, we use the SGD optimizer, additionally, there
+# are many different optimizers available in PyTorch such as ADAM and RMSProp, that work better for differrent kinds of
+# models and data.
+#
+# We initialize the optimizer by registering the model's parameters that need to be trained, and passing in the learning
+# rate hyperparameter.
+
+optimizer = torch.optim.SGD(model.parameters(), lr = learning_rate)
+
+# Inside the training loop, optimization happens in three steps:
+# - Call optimizer.zero_grad() to reset the gradients of model parameters. Gradients by default add up: to prevent
+#   double counting, we explicitly zero them at each iteration.
+# - Backpropogate the prediction loss with a call to loss.backward(). PyTorch deposits the gradients collected in the
+#   pass.
+
+
