@@ -104,4 +104,5 @@ loss_fn = nn.CrossEntropyLoss()
 
 # Optimizer
 #
-#
+# Optimization is the process of adjusting model parameters to reduce model error in each training step.
+# **optimization algorithms**
