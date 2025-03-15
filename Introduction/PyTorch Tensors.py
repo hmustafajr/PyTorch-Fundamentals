@@ -64,3 +64,12 @@ print(threes.shape) # this has the same dimensions as input tensors
 r1 = torch.rand(2, 3)
 r2 = torch.rand(2, 3)
 #r3 = r1 + r2 #uncomment if you want a runtime error
+#
+# Output
+tensor([[1., 1., 1.],
+        [1., 1., 1.]])
+tensor([[2., 2., 2.],
+        [2., 2., 2.]])
+tensor([[3., 3., 3.],
+        [3., 3., 3.]])
+torch.Size([2, 3])
